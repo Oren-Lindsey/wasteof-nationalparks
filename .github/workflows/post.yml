@@ -34,5 +34,4 @@ jobs:
           username: ${{ secrets.username }}
           wasteofpassword: ${{ secrets.wasteofpassword }}
         run: |
-          # cd whatever-directory-your-node-file-is-in  This line not needed if your file is in the root directory
           node index.js # You may need to rename to .mjs if you use imports, node likes to complain about this. Alternatively, you can use require() instead
