@@ -81,9 +81,14 @@ async function main() {
   let api = new ApiClient.ImgBB({
     token: imgbbkey,
    });
-  let ret = await api.upload({
+  let ret
+  try {
+  ret = await api.upload({
    image: imagestring,
   })
+  } catch (e) {
+      console.error(e)
+  }
   return {image: ret.data, park: selectedPark,imageinfo:selectedImage}
 };
 
