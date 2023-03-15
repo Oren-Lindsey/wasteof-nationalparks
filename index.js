@@ -81,20 +81,20 @@ async function main() {
   let api = new ApiClient.ImgBB({
     token: imgbbkey,
    });
-  let ret
-  imagestring = selectedImage.url
+  let ret.image.url = ""
+  /*imagestring = selectedImage.url
   try {
   ret = await api.upload({
    image: imagestring,
   })
   } catch (e) {
       console.error(e)
-  }
-  return {image: ret.data, park: selectedPark,imageinfo:selectedImage}
+  }*/
+  return {park: selectedPark,imageinfo:selectedImage, image: ret.data}
 };
 
 main().then(async (res) => {
   await wasteof2.login()
-  wasteof2.post(`<h1>${res.park.fullName}</h1><p></p><i>${res.park.description}</i><p>Photo: "${res.imageinfo.caption}" - ${res.imageinfo.credit}<img src=${res.image.url} />`,null)
+  wasteof2.post(`<h1>${res.park.fullName}</h1><p></p><i>${res.park.description}</i><p>Photo: "${res.imageinfo.caption}" - ${res.imageinfo.credit}"`)//<img src=${res.image.url} />`,null)
   console.log("done")
 })
