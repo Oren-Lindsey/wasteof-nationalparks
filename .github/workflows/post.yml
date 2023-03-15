@@ -1,0 +1,38 @@
+name: post
+
+# Controls when the workflow will run
+on:
+  schedule:
+   - cron: "0 6 * * *"
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "run"
+  run:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      # Set up Node.js
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3.6.0
+        with:
+          node-version: ${{ matrix.node-version }}
+      # Install dependencies
+      - name: Install dependencies
+        run: |
+          npm install axios imgbb wasteof-client # This is important!
+      - name: Run node.js file
+        env:
+        # env vars: apikey: nps api key; imgbbkey: imgbb api key; username: wasteof username; wasteofpassword: wasteof password
+          apikey: ${{ secrets.apikey }}
+          imgbbkey: ${{ secrets.imgbbkeykey }}
+          username: ${{ secrets.username }}
+          wasteofpassword: ${{ secrets.wasteofpassword }}
+        run: |
+          # cd whatever-directory-your-node-file-is-in  This line not needed if your file is in the root directory
+          node index.js # You may need to rename to .mjs if you use imports, node likes to complain about this. Alternatively, you can use require() instead
