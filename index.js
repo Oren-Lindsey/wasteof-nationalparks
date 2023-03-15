@@ -82,6 +82,7 @@ async function main() {
     token: imgbbkey,
    });
   let ret
+  imagestring = selectedImage.url
   try {
   ret = await api.upload({
    image: imagestring,
