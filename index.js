@@ -81,7 +81,7 @@ async function main() {
   let api = new ApiClient.ImgBB({
     token: imgbbkey,
    });
-  let ret["image"]["url"] = ""
+  let ret = {image: {url: ""}}
   /*imagestring = selectedImage.url
   try {
   ret = await api.upload({
